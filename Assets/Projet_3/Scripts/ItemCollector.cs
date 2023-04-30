@@ -6,10 +6,9 @@ using TMPro;
 
 public class ItemCollector : MonoBehaviour
 {
-    int coinsCount = 0;
-
-    [SerializeField] TMP_Text coinsText;
-    [SerializeField] AudioSource collectionSound;
+    private int coinsCount = 0;
+    [SerializeField] private TMP_Text coinsText;
+    [SerializeField] private AudioSource collectionSound;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Coin"))

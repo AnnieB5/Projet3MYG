@@ -7,6 +7,9 @@ public class PlayerLife : MonoBehaviour
 {
     [SerializeField] AudioSource deathSound;
     bool dead = false;
+
+    public Timer timer;
+
     private void Update()
     {
         if (transform.position.y < -1f && !dead)
@@ -31,7 +34,7 @@ public class PlayerLife : MonoBehaviour
         }
     }
 
-    void Die()
+    public void Die()
     {
         //relance le niveau qu'après une attente de 1,3 secondes.
         Invoke(nameof(ReloadLevel), 1.3f);
@@ -42,5 +45,6 @@ public class PlayerLife : MonoBehaviour
     void ReloadLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        timer.timeValue = 90;
     }
 }
