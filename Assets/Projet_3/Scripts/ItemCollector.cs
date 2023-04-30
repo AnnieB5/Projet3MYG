@@ -11,7 +11,7 @@ public class ItemCollector : MonoBehaviour
     [SerializeField] private AudioSource collectionSound;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Coin"))
+        if (other.gameObject.CompareTag("Coin Random") || other.gameObject.CompareTag("Coin Bronze") || other.gameObject.CompareTag("Coin Silver") || other.gameObject.CompareTag("Coin Gold"))
         {
             Destroy(other.gameObject);
             coinsCount++;

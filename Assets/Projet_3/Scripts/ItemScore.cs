@@ -13,7 +13,7 @@ public class ItemScore : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Coin"))
+        if (other.gameObject.CompareTag("Coin Random"))
         {
             //Récupère la référence du gameobject pièce concerné
             coinTouchedGO = other.gameObject;
@@ -40,9 +40,28 @@ public class ItemScore : MonoBehaviour
                     break; 
             }
 
-            //Affiche le nouveau score
-            scoreText.text = "Score: " + score;
-
+            DisplayScore();
         }
+        else if (other.gameObject.CompareTag("Coin Bronze"))
+        {
+            score =  score + 1;
+            DisplayScore();
+        }
+        else if (other.gameObject.CompareTag("Coin Silver"))
+        {
+            score =  score + 5;
+            DisplayScore();
+        }
+        else if (other.gameObject.CompareTag("Coin Gold"))
+        {
+            score =  score + 10;
+            DisplayScore();
+        }
+    }
+
+    private void DisplayScore()
+    {
+        //Affiche le nouveau score
+        scoreText.text = "Score: " + score;
     }
 }

@@ -7,6 +7,10 @@ TagManager:
   - Enemy Body
   - Enemy Head
   - Coin
+  - Coin Random
+  - Coin Gold
+  - Coin Silver
+  - Coin Bronze
   layers:
   - Default
   - TransparentFX
