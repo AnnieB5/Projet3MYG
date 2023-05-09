@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerLife : MonoBehaviour
 {
     [SerializeField] AudioSource deathSound;
+    [SerializeField] GameObject meshGO;
     bool dead = false;
 
     public Timer timer;
@@ -19,10 +20,10 @@ public class PlayerLife : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy Body"))
+        if (collision.gameObject.CompareTag("Enemy Body") || collision.gameObject.CompareTag("Water"))
         {
             //fait disparaître le joueur en désactivant son apparence, le MeshRenderer
-            GetComponent<MeshRenderer>().enabled = false;
+            meshGO.GetComponent<SkinnedMeshRenderer>().enabled = false;
 
             //rend le joueur insensible à la poussée des autres GO (ne bouge plus si on le pousse, car on coche isKinematic)
             GetComponent<Rigidbody>().isKinematic = true;

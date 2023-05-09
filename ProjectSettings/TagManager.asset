@@ -11,6 +11,7 @@ TagManager:
   - Coin Gold
   - Coin Silver
   - Coin Bronze
+  - Water
   layers:
   - Default
   - TransparentFX
