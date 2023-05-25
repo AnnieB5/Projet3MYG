@@ -19,18 +19,8 @@ public class ItemScore : MonoBehaviour
         //Affiche en console la valeur du PlayerPref
         Debug.Log("initialisation réussie score: "+ PlayerPrefs.GetInt("ItemScore"));
 
-        //Affiche le score
+        //Affiche le score (nb*valeur des pièces)
         DisplayScore();
-        
-
-
-
-
-
-        
-        //Charge le score (pièces*valeur de la pièce) sauvegardé, et affiche 0 par défaut de sauvegarde
-        //score = PlayerPrefs.GetInt("ItemScore", 0);
-        //DisplayScore();
     }
 
     private void OnTriggerEnter(Collider other)

@@ -7,32 +7,22 @@ using TMPro;
 public class ItemCollector : MonoBehaviour
 {
     [SerializeField] private TMP_Text coinsText;
-    private int coinsCount = 0;
     [SerializeField] private AudioSource collectionSound;
+    private int coinsCount = 0;
+    
 
     void Start()
     {
-        //Créé et initialise le PlayerPref EnemiesScore 
+        //Créé et initialise (ou ré-initialise) le PlayerPref CoinsScore 
         PlayerPrefs.SetInt("CoinsScore", 0);
 
         //Affiche en console la valeur du PlayerPref
         Debug.Log("initialisation réussie nb coins collectés: "+ PlayerPrefs.GetInt("CoinsScore"));
 
-        //Affiche le score
+        //Affiche le score du nombre de pièces collectées
         coinsText.text = "Coins: " + coinsCount;
-
-
-
-
-
-
-
-
-        //Charge le nombre d'ennemis tués sauvegardé, et affiche 0 par défaut de sauvegarde
-        //coinsCount = PlayerPrefs.GetInt("CoinsScore", 0);
-        //Debug.Log("charge réussie: "+ PlayerPrefs.GetInt("CoinsScore"));
-        //DisplayScore();
     }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Coin Random") || other.gameObject.CompareTag("Coin Bronze") || other.gameObject.CompareTag("Coin Silver") || other.gameObject.CompareTag("Coin Gold"))
@@ -56,18 +46,4 @@ public class ItemCollector : MonoBehaviour
             Debug.Log("save réussie nb coins collectés: "+ PlayerPrefs.GetInt("CoinsScore"));
         }
     }
-
-    /*
-    private void DisplayScore()
-    {
-        coinsText.text = "Coins: " + coinsCount;
-    }
-
-    private void SaveScore()
-    {
-        //Sauvegarde le nombre d'ennemis tués et écrase la précédente sauvegarde s'il y a
-        PlayerPrefs.SetInt("CoinsScore", coinsCount) ;
-        //Debug.Log("save réussie: "+ PlayerPrefs.GetInt("CoinsScore"));
-    }
-    */
 }

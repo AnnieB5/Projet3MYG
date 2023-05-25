@@ -9,51 +9,26 @@ public class EnemiesScore : MonoBehaviour
     private int enemiesScore = 0;
     
 
-    //[SerializeField] private RestartPlayerPrefs restartScript;
-
-    //[SerializeField] private GameObject playerGO;
-
-    //Méthode appelée à chaque activation du GO, instantation de GO et chargement de scène
     void Start()
     {
-        //Créé et initialise le PlayerPref EnemiesScore 
+        //Créé et initialise (ou ré-initialise) le PlayerPref EnemiesScore 
         PlayerPrefs.SetInt("EnemiesScore", 0);
 
-        //Affiche en console la valeur du PlayerPref
+        //Affiche en console la valeur du PlayerPref EnemiesScore
         Debug.Log("initialisation réussie nb ennemis tués: "+ PlayerPrefs.GetInt("EnemiesScore"));
 
-        //Affiche le score
+        //Affiche le score du nombre d'ennemis tués
         enemiesScoreText.text = "Ennemis tués: " + enemiesScore;
-
-
-
-
-
-
-        //Le GO associé au script reste dans la Hierarchy même en changeant de scène
-        //DontDestroyOnLoad(this.gameObject);
-
-        //Charge le nombre d'ennemis tués sauvegardé, et affiche 0 par défaut de sauvegarde
-        //enemiesScore = PlayerPrefs.GetInt("EnemiesScore", 0);
-        //Debug.Log("charge réussie: "+ PlayerPrefs.GetInt("EnemiesScore"));
-
-        //Affiche le score stocké au démarrage/activation du GO
-        //DisplayScore();
     }
     
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision) //Se déclenche à la collision du GO attaché au script, avec un autre GO
     {
         if(collision.gameObject.CompareTag("Enemy Head"))
         {
-            //Debug.Log("détection head");
-
-            //Ajoute un point par ennemi tué, au score.
+            //Ajoute un point par ennemi tué, au score du nombre d'ennemis tués
             enemiesScore++;
-            
-            //Attention, pas score++ car commence de 0 !
-            //enemiesScore = enemiesScore + 1;
 
-            //Affiche le score
+            //Affiche le score du nombre d'ennemis tués
             enemiesScoreText.text = "Ennemis tués: " + enemiesScore;
 
             //Sauvegarde le nouveau score en écrasant la valeur précédente du PlayerPref
@@ -61,30 +36,6 @@ public class EnemiesScore : MonoBehaviour
 
             //Affiche en console la valeur du PlayerPref
             Debug.Log("save réussie nb ennemis tués: "+ PlayerPrefs.GetInt("EnemiesScore"));
-            
-
-
-
-
-
-
-
-            //DisplayScore();
-            //SaveScore();
         }
     }
-
-    /*
-    private void DisplayScore()
-    {
-        enemiesScoreText.text = "Ennemis tués: " + restartScript.enemiesScore;
-    }
-
-    private void SaveScore()
-    {
-        //Sauvegarde le nombre d'ennemis tués et écrase la précédente sauvegarde s'il y a
-        //PlayerPrefs.SetInt("EnemiesScore", enemiesScore) ;
-        //Debug.Log("save réussie: "+ PlayerPrefs.GetInt("EnemiesScore"));
-    }
-    */
 }
