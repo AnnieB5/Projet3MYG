@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float jumpForce = 5f;
+
+    [SerializeField] private AnimationStateController animationStateControllerScript;
     //[SerializeField] Transform groundCheck;
     public LayerMask ground;
     public float raycastDistance = 0.1f;
@@ -25,50 +27,38 @@ public class PlayerMovement : MonoBehaviour
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
-        playerMovementInput = new Vector3(horizontalInput, 0f, verticalInput).normalized;
-        //playerMovementInput.Normalize();
-
-        MovePlayer();
-
-        ///Vector3 movementDirection = playerRigidBody.velocity;
-
-        ///movementDirection =  new Vector3(horizontalInput, 0, verticalInput);
-        ///movementDirection.Normalize();
-
-        ///transform.Translate(movementDirection * speed * Time.deltaTime, Space.World);
-
+        playerMovementInput = new Vector3(horizontalInput, 0f, verticalInput);
         
         //Rotation du personnage en fonction de la direction donnée par Inputs (là où il y a PB)
         if (playerMovementInput != Vector3.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(playerMovementInput, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
-
-            //Quaternion targetRotation = Quaternion.LookRotation(playerMovementInput);
-            //targetRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-            //playerRigidBody.MoveRotation(targetRotation);
         }
         
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             Jump();
+            animationStateControllerScript.PlayJumpingAnimation();
         }
+    }
+
+    void FixedUpdate()
+    {
+        MovePlayer();
     }
 
     private void MovePlayer()
     {
-        //transform.Translate(playerMovementInput * speed * Time.deltaTime, Space.World);
-
-        /*Vector3 MoveVector = transform.TransformDirection(playerMovementInput) * speed;
-        playerRigidBody.velocity = new Vector3(MoveVector.x, playerRigidBody.velocity.y, MoveVector.z);*/
-
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+        Vector3 playerMovementInputFixed = new Vector3(horizontalInput, 0f, verticalInput);
         playerRigidBody.MovePosition(playerRigidBody.position + playerMovementInput * speed * Time.deltaTime);
     }
     void Jump()
     {
         playerRigidBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        ///playerRigidBody.velocity = new Vector3(playerRigidBody.velocity.x, jumpForce, playerRigidBody.velocity.z);
         jumpSound.Play();
     }
 
@@ -82,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         RaycastHit hit;
         if(Physics.Raycast(transform.position, Vector3.down, out hit, raycastDistance, ground))
