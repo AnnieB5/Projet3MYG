@@ -10,7 +10,7 @@ public class ItemScore : MonoBehaviour
     private GameObject coinTouchedGO;
     private CoinSelection coinScript;
     
-    
+    // Start is called before the first frame update
     void Start()
     {
         //Créé et initialise le PlayerPref ItemScore

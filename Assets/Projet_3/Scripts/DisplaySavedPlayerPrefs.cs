@@ -21,10 +21,4 @@ public class DisplaySavedPlayerPrefs : MonoBehaviour
         //Affiche la valeur du PlayerPref nb coins collectés
         coinsText.text = "Coins: " + PlayerPrefs.GetInt("CoinsScore");
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
