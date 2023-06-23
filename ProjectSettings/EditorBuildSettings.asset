@@ -9,21 +9,21 @@ EditorBuildSettings:
     path: Assets/Projet_3/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Projet_3/Scenes/Start Screen.unity
+    path: Assets/Projet_3/Scenes/Game/Start_Scene_0.unity
     guid: d1916aa4612071f408fdcdc134873564
   - enabled: 1
-    path: Assets/Projet_3/Scenes/Level01.unity
+    path: Assets/Projet_3/Scenes/Game/Level_Scene_1.unity
     guid: f7ce8993f5c50924884ed403831f5ada
   - enabled: 1
-    path: Assets/Projet_3/Scenes/End Scene.unity
+    path: Assets/Projet_3/Scenes/Game/End_Scene_2.unity
     guid: 4173af4d95219214eb17936c5eed88d2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Projet_3/Scenes/Test/Level01Test.unity
     guid: e2ca571cf86699f41b2ca8b7b963695f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Projet_3/Scenes/Test/Level02Test.unity
     guid: f59631002a823d64c8f2893db19f036c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Projet_3/Scenes/End Screen Test.unity
     guid: 39ad8e851e5943542bb794d0af409515
   m_configObjects: {}

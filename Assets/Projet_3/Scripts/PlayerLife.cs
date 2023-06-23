@@ -9,7 +9,15 @@ public class PlayerLife : MonoBehaviour
     [SerializeField] GameObject meshGO;
     bool dead = false;
 
-    public Timer timer;
+    private Timer timer;
+
+    public int life;
+    public int startLife = 10;
+
+    private void Start()
+    {
+        life = startLife;
+    }
 
     private void Update()
     {
@@ -20,7 +28,32 @@ public class PlayerLife : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy Body") || collision.gameObject.CompareTag("Water"))
+        if (collision.gameObject.CompareTag("Enemy Body"))
+        {
+            
+
+            //on applique les damage de l'ennemi correspondant
+            EnemyController enemy = collision.gameObject.GetComponent<EnemyController>();
+            int damage = enemy.enemyValues.damage;
+            life = life - damage;
+            Debug.Log("Points de vie restants :" + life);
+            if (life <= 0)
+            {
+                //fait disparaître le joueur en désactivant son apparence, le MeshRenderer
+                meshGO.GetComponent<SkinnedMeshRenderer>().enabled = false;
+
+                //rend le joueur insensible à la poussée des autres GO (ne bouge plus si on le pousse, car on coche isKinematic)
+                GetComponent<Rigidbody>().isKinematic = true;
+
+                //désactive le script gérant le mouvement du joueur, rendant le mouvement impossible par inputs joueur
+                GetComponent<PlayerMovement>().enabled = false;
+                
+                Die();
+            }
+            
+        }
+
+        if (collision.gameObject.CompareTag("Water"))
         {
             //fait disparaître le joueur en désactivant son apparence, le MeshRenderer
             meshGO.GetComponent<SkinnedMeshRenderer>().enabled = false;
@@ -46,6 +79,6 @@ public class PlayerLife : MonoBehaviour
     void ReloadLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        timer.timeValue = 90;
+        timer.timeValue = timer.timeStart;
     }
 }
