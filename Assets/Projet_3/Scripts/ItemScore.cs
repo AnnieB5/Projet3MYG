@@ -8,7 +8,7 @@ public class ItemScore : MonoBehaviour
     [SerializeField] private TMP_Text scoreText;
     private int score = 0;
     private GameObject coinTouchedGO;
-    private CoinSelection coinScript;
+    private CoinSpawner coinScript;
     
     // Start is called before the first frame update
     void Start()
@@ -34,7 +34,7 @@ public class ItemScore : MonoBehaviour
             Renderer coinRenderer = coinTouchedGO.GetComponent<Renderer>();
 
             //Récupère le script "CoinSelection" de la pièce
-            coinScript = coinTouchedGO.GetComponent<CoinSelection>();
+            coinScript = coinTouchedGO.GetComponent<CoinSpawner>();
 
             //Ajoute au score les points correspondant à la pièce
             switch (coinScript.chosenCoin)

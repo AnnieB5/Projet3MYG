@@ -79,6 +79,5 @@ public class PlayerLife : MonoBehaviour
     void ReloadLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        timer.timeValue = timer.timeStart;
     }
 }
