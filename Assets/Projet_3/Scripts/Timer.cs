@@ -11,50 +11,21 @@ public class Timer : MonoBehaviour
     [HideInInspector] public float timeValue;
     private float timeRealised;
     public TextMeshProUGUI timerText;
-
     public PlayerLife playerLife;
-
-    //private Scene levelScene;
-
-    //private Scene currentScene;
-
-    //private string nameLevelScene;
-
-    //private string nameCurrentScene;    
+    [HideInInspector] public bool stopChrono;
 
     void Start()
     {
         //attribue le temps restant de départ
         timeValue = timeStart;
 
-        //enregistre la scène chargée
-        //levelScene = SceneManager.GetActiveScene();
-
-        //nameLevelScene = levelScene.name;
-        //Debug.Log("Nom de la scène du niveau: " + nameLevelScene + "Index de la scène du niveau: " + levelScene.buildIndex);
+        stopChrono = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //alors si la valeur du temps est supérieure à 0, décrémenter le temps du compte à rebours selon le temps qui s'écoule réellement
-        if (timeValue > 0)
-        {
-            timeValue -= Time.deltaTime;
-        }
-
-        //sinon le temps sera égal à 0 (temps écoulé, pas de temps négatif)
-        else
-        {
-            timeValue = 0;
-        }
-
-        /*
-        //vérifie dans quelle scène on est à chaque frame
-        currentScene = SceneManager.GetActiveScene();
-
-        //si la scène dans laquelle on est, est la scène de niveau
-        if (currentScene == levelScene)
+        if (stopChrono == false)
         {
             //alors si la valeur du temps est supérieure à 0, décrémenter le temps du compte à rebours selon le temps qui s'écoule réellement
             if (timeValue > 0)
@@ -67,24 +38,10 @@ public class Timer : MonoBehaviour
             {
                 timeValue = 0;
             }
+
+            //affiche le temps restant
+            DisplayTime(timeValue);
         }
-        else
-        {
-            //arrete le compte à rebours (le fige, ne le remet pas à 0)
-
-            //Calcule le temps réalisé (temps restant inversé)
-            timeRealised = timeStart - timeValue;
-
-            //Sauvegarde le temps réalisé
-            PlayerPrefs.SetFloat("TimeScore", timeRealised);
-
-            //Affiche en console la valeur du PlayerPref
-            Debug.Log("save réussie temps réalisé: "+ PlayerPrefs.GetFloat("TimeScore"));
-        }
-        */
-
-        //affiche le temps restant
-        DisplayTime(timeValue);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -92,6 +49,7 @@ public class Timer : MonoBehaviour
         if (other.gameObject.CompareTag("Finish"))
         {
             //arrete le compte à rebours (le fige, ne le remet pas à 0)
+            stopChrono = true;
 
             //Calcule le temps réalisé (temps restant inversé)
             timeRealised = timeStart - timeValue;

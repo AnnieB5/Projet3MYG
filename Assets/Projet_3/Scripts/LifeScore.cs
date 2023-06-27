@@ -12,7 +12,7 @@ public class LifeScore : MonoBehaviour
     void Start()
     {
         //Créé et initialise (ou ré-initialise) le PlayerPref LifeScore 
-        PlayerPrefs.SetInt("LifeScore", 0);
+        PlayerPrefs.SetInt("LifeScore", playerLifeScript.startLife);
 
         //Affiche en console la valeur du PlayerPref EnemiesScore
         Debug.Log("initialisation réussie nb vies: "+ PlayerPrefs.GetInt("LifeScore"));
