@@ -18,7 +18,7 @@ public class EnemiesScore : MonoBehaviour
         Debug.Log("initialisation réussie nb ennemis tués: "+ PlayerPrefs.GetInt("EnemiesScore"));
 
         //Affiche le score du nombre d'ennemis tués
-        enemiesScoreText.text = "Ennemis tués: " + enemiesScore;
+        enemiesScoreText.text = enemiesScore.ToString();
     }
     
     private void OnCollisionEnter(Collision collision) //Se déclenche à la collision du GO attaché au script, avec un autre GO
@@ -29,7 +29,7 @@ public class EnemiesScore : MonoBehaviour
             enemiesScore++;
 
             //Affiche le score du nombre d'ennemis tués
-            enemiesScoreText.text = "Ennemis tués: " + enemiesScore;
+            enemiesScoreText.text = enemiesScore.ToString();
 
             //Sauvegarde le nouveau score en écrasant la valeur précédente du PlayerPref
             PlayerPrefs.SetInt("EnemiesScore", enemiesScore);

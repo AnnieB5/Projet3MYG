@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerLife : MonoBehaviour
 {
+    public LifeScore lifeScoreScript;
     [SerializeField] AudioSource deathSound;
     [SerializeField] GameObject meshGO;
+    //[SerializeField] TMP_Text lifeText;
     bool dead = false;
 
     private Timer timer;
@@ -17,6 +20,9 @@ public class PlayerLife : MonoBehaviour
     private void Start()
     {
         life = startLife;
+
+        //Affiche le nombre de vies initial
+        lifeScoreScript.DisplayAndSaveScore();
     }
 
     private void Update()
@@ -30,13 +36,16 @@ public class PlayerLife : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy Body"))
         {
-            
-
             //on applique les damage de l'ennemi correspondant
             EnemyController enemy = collision.gameObject.GetComponent<EnemyController>();
             int damage = enemy.enemyValues.damage;
             life = life - damage;
+            
+            //Affiche le nombre de vies restant
+            lifeScoreScript.DisplayAndSaveScore();
+
             Debug.Log("Points de vie restants :" + life);
+
             if (life <= 0)
             {
                 //fait disparaître le joueur en désactivant son apparence, le MeshRenderer

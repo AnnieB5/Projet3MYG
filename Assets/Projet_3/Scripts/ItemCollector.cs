@@ -20,7 +20,7 @@ public class ItemCollector : MonoBehaviour
         Debug.Log("initialisation réussie nb coins collectés: "+ PlayerPrefs.GetInt("CoinsScore"));
 
         //Affiche le score du nombre de pièces collectées
-        coinsText.text = "Coins: " + coinsCount;
+        coinsText.text = coinsCount.ToString();
     }
     
     private void OnTriggerEnter(Collider other)
@@ -34,7 +34,7 @@ public class ItemCollector : MonoBehaviour
             coinsCount++;
             
             //Affiche le score
-            coinsText.text = "Coins: " + coinsCount;
+            coinsText.text = coinsCount.ToString();
 
             //Joue un son de collecte de pièce
             collectionSound.Play();

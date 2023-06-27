@@ -11,35 +11,38 @@ public class LightController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ResetLights();
+        ResetLights(true);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if(!other.gameObject.CompareTag("Player"))
         return;
-        lightGO.SetActive(false);
 
-        foreach (GameObject light in lightGOArray)
-        {
-            light.SetActive(true);
-        }
+        ResetLights(false);
+        //lightGO.SetActive(false);
+
+        //foreach (GameObject light in lightGOArray)
+        //{
+        //    light.SetActive(true);
+        //}
     }
 
     private void OnTriggerExit(Collider other)
     {
         if(!other.gameObject.CompareTag("Player"))
         return;
-        ResetLights();
+
+        ResetLights(true);
     }
 
-    private void ResetLights()
+    private void ResetLights(bool oneBigLight)
     {
-        lightGO.SetActive(true);
+        lightGO.SetActive(oneBigLight);
 
         foreach (GameObject light in lightGOArray)
         {
-            light.SetActive(false);
+            light.SetActive(!oneBigLight);
         }
     }
 

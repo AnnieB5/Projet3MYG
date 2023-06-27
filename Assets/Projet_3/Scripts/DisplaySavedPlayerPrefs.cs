@@ -9,6 +9,7 @@ public class DisplaySavedPlayerPrefs : MonoBehaviour
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text coinsText;
     [SerializeField] private TMP_Text timerText;
+    [SerializeField] private TMP_Text lifeText;
 
     private float time;
 
@@ -16,13 +17,16 @@ public class DisplaySavedPlayerPrefs : MonoBehaviour
     void Start()
     {
         //Affiche la valeur du PlayerPref nb ennemis tués
-        enemiesScoreText.text = "Ennemis tués: " + PlayerPrefs.GetInt("EnemiesScore");
+        enemiesScoreText.text = "Ennemi(s) tué(s): " + PlayerPrefs.GetInt("EnemiesScore");
 
         //Affiche la valeur du PlayerPref score
         scoreText.text = "Score: " + PlayerPrefs.GetInt("ItemScore");
 
         //Affiche la valeur du PlayerPref nb coins collectés
-        coinsText.text = "Coins: " + PlayerPrefs.GetInt("CoinsScore");
+        coinsText.text = "Coin(s): " + PlayerPrefs.GetInt("CoinsScore");
+
+        //Affiche la valeur du PlayerPref nb vies restantes
+        lifeText.text = "Vie(s) restante(s): " + PlayerPrefs.GetInt("LifeScore");
 
         //Récupère la valeur du PlayPref temps réalisé
         time = PlayerPrefs.GetFloat("TimeScore");
@@ -38,5 +42,6 @@ public class DisplaySavedPlayerPrefs : MonoBehaviour
 
         //met dans le bon format d'affichage le temps à afficher et l'affiche
         timerText.text = "Temps réalisé: " + string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
+
     }
 }

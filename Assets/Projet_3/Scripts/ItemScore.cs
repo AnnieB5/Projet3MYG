@@ -79,7 +79,7 @@ public class ItemScore : MonoBehaviour
     private void DisplayScore()
     {
         //Affiche le (nouveau) score
-        scoreText.text = "Score: " + score;
+        scoreText.text = score.ToString();
     }
 
     private void SaveScore()

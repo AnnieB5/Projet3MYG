@@ -134,6 +134,6 @@ public class Timer : MonoBehaviour
         float milliseconds = timeToDisplay % 1 * 1000;
 
         //met dans le bon format d'affichage le temps à afficher et l'affiche
-        timerText.text = "Temps restant: " + string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
+        timerText.text = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
     }
 }
