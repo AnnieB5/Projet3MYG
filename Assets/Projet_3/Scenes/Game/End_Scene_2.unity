@@ -870,7 +870,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: YOU WIN !
+  m_text: "GAGN\xC9 !"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 438a1d8d590e75e49b73411bfd69ac58, type: 2}
   m_sharedMaterial: {fileID: 9133145984746400090, guid: 438a1d8d590e75e49b73411bfd69ac58,
@@ -6386,6 +6386,9 @@ MonoBehaviour:
   startLife: 10
   meshGO: {fileID: 1374355331865001219}
   deathSound: {fileID: 1374355332215579355}
+  canvasLostGame: {fileID: 0}
+  canvasMenu: {fileID: 0}
+  timerScript: {fileID: 0}
 --- !u!114 &1374355332215579329
 MonoBehaviour:
   m_ObjectHideFlags: 0
