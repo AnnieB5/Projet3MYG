@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     public float raycastDistance = 0.1f;
     [SerializeField] AudioSource jumpSound;
 
+    public bool isGroundedTest;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +44,8 @@ public class PlayerMovement : MonoBehaviour
             Jump();
             animationStateControllerScript.PlayJumpingAnimation();
         }
+
+        //isGroundedTest = IsGrounded(); //debug
     }
 
     void FixedUpdate()
@@ -56,27 +60,18 @@ public class PlayerMovement : MonoBehaviour
         Vector3 playerMovementInputFixed = new Vector3(horizontalInput, 0f, verticalInput);
         playerRigidBody.MovePosition(playerRigidBody.position + playerMovementInput * speed * Time.deltaTime);
     }
-    void Jump()
+    public void Jump()
     {
         playerRigidBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         jumpSound.Play();
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy Head"))
-        {
-            Destroy(collision.transform.parent.gameObject);
-            Jump();
-        }
-    }
-
     
     public bool IsGrounded()
     {
         RaycastHit hit;
         if(Physics.Raycast(transform.position, Vector3.down, out hit, raycastDistance, ground))
         {
+            Debug.DrawRay(transform.position, Vector3.down*raycastDistance, Color.red, 2);
             return true;
         }
         else

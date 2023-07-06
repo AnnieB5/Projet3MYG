@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
+  isChasing: 0
 --- !u!1 &8271951075921547524
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,7 +71,7 @@ GameObject:
   - component: {fileID: 6384360569818974106}
   - component: {fileID: 7388330846811806950}
   - component: {fileID: 8725867707726381531}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Head
   m_TagString: Enemy Head
   m_Icon: {fileID: 0}
@@ -247,7 +248,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 0.5
+  m_BaseOffset: 0.25
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &2507886896399336999
@@ -263,3 +264,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: []
+  chaseScript: {fileID: 0}

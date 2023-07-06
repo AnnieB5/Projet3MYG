@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Finish : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    public CollectKey collectKeyScript;
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.name == "Player")
+        if (collision.gameObject.name == "Player" && collectKeyScript.isOpenDoor == true)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }

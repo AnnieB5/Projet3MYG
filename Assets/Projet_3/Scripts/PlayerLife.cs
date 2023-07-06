@@ -14,7 +14,10 @@ public class PlayerLife : MonoBehaviour
     private bool dead = false;
     [SerializeField] private GameObject canvasLostGame;
     [SerializeField] private GameObject canvasMenu;
+    public PlayerMovement playerMovementScript;
     public Timer timerScript;
+    public LayerMask head;
+    public float raycastDistance = 0.1f;
 
     private void Start() //Appelée à la première frame de l'application
     {
@@ -41,10 +44,15 @@ public class PlayerLife : MonoBehaviour
         {
             Die();
         }
+
+        if (playerMovementScript.IsGrounded() == false)
+        {
+            IsEnemyHeadTouched();
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy Body"))
+        if (collision.gameObject.CompareTag("Enemy Body") && playerMovementScript.IsGrounded())
         {
             //Enlève de la vie au joueur selon les dommages de l'ennemi correspondant
             EnemyController enemy = collision.gameObject.GetComponent<EnemyController>();
@@ -63,9 +71,33 @@ public class PlayerLife : MonoBehaviour
 
         }
 
+        /*
+        else if (collision.gameObject.CompareTag("Enemy Head"))
+        {
+            Destroy(collision.transform.parent.gameObject);
+            playerMovementScript.Jump();
+        }
+        */
+
         if (collision.gameObject.CompareTag("Water"))
         {
             Die();
+        }
+    }
+
+    public bool IsEnemyHeadTouched()
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, Vector3.down, out hit, raycastDistance, head))
+        {
+            Destroy(hit.collider.gameObject.transform.parent.gameObject);
+            Debug.DrawRay(transform.position, Vector3.down*raycastDistance, Color.blue, 2);
+            playerMovementScript.Jump();
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 

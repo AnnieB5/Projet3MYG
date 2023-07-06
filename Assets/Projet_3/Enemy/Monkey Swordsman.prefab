@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: []
+  chaseScript: {fileID: 0}
 --- !u!1 &1045952092563548311
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,7 +163,7 @@ GameObject:
   - component: {fileID: 1045952092563548310}
   - component: {fileID: 1045952092563548307}
   - component: {fileID: 1045952092563548305}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Head
   m_TagString: Enemy Head
   m_Icon: {fileID: 0}
@@ -264,3 +265,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
+  isChasing: 0
