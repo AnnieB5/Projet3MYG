@@ -14,14 +14,20 @@ public class LightSparkling : MonoBehaviour
     void OnEnable() //Appelée à chaque activation du script (ce qui est différent du Start())
     {
         flagOn = true; //active le scintillement dans la coroutine
-        Debug.Log("On active le script");
+
+        //DEBUG LAISSER EN COMM'
+        //Debug.Log("On active le script");
+
         StartCoroutine(sparkleLight());
     }
 
     void OnDisable() //Appelée à chaque désactivation du script
     {
         flagOn = false; //désactive le scintillement dans la coroutine
-        Debug.Log("On désactive le script");
+
+        //DEBUG LAISSER EN COMM'
+        //Debug.Log("On désactive le script");
+        
         StopCoroutine(sparkleLight());
     }
 
@@ -51,11 +57,11 @@ public class LightSparkling : MonoBehaviour
 
     public IEnumerator sparkleLight()
     {
-        Debug.Log("Entrée de coroutine réussie");
+        //DEBUG LAISSER EN COMM'
+        //Debug.Log("Entrée de coroutine réussie");
+
         //float waitTime = totalSeconds / 2;
         // Get half of the seconds (One half to get brighter and one to get darker)
-
-
 
         while (flagOn)
         {
@@ -70,7 +76,6 @@ public class LightSparkling : MonoBehaviour
                 yield return new WaitForSeconds(waitTime);
             }
         }
-
 
         Debug.Log("Sortie de coroutine réussie");
         yield return null;

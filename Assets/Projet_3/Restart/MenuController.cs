@@ -27,7 +27,6 @@ public class MenuController : MonoBehaviour
     {
         Application.Quit();
         Debug.Log("On a quitté l'application du jeu");
-        //prévoir bouton adapté
     }
 
     public void BackToMenu()

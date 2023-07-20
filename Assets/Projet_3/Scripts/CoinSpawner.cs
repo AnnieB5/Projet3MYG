@@ -11,10 +11,10 @@ public class CoinSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        chosenCoin = Random.Range(0,coinGO.Length); //choisi une valeur pour le type de coin entre 1 et 3 (max exclusif, avec float, en max inclusif)
-        Instantiate(coinGO[chosenCoin], transform.position, Quaternion.identity, parent);
-        
-    }
+        //Choisit une valeur pour le type de coin entre 1 et 3 (max exclusif, avec float, en max inclusif)
+        chosenCoin = Random.Range(0,coinGO.Length);
 
-    
+        //Génère les GO des pièces du tableau coinGO, selon la position donnée de leurs transform, leurs rotations et leur parent (?)
+        Instantiate(coinGO[chosenCoin], transform.position, Quaternion.identity, parent);
+    }
 }

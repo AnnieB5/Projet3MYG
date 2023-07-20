@@ -16,8 +16,9 @@ public class ItemScore : MonoBehaviour
         //Créé et initialise le PlayerPref ItemScore
         PlayerPrefs.SetInt("ItemScore", 0);
 
+        //DEBUG LAISSER EN COMM'
         //Affiche en console la valeur du PlayerPref
-        Debug.Log("initialisation réussie score: "+ PlayerPrefs.GetInt("ItemScore"));
+        //Debug.Log("initialisation réussie score: "+ PlayerPrefs.GetInt("ItemScore"));
 
         //Affiche le score (nb*valeur des pièces)
         DisplayScore();
@@ -25,7 +26,8 @@ public class ItemScore : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Coin Random")) //si la pièce touchée était une pièce choisie aléatoirement
+        //Si la pièce touchée est une pièce choisie aléatoirement
+        if (other.gameObject.CompareTag("Coin Random")) 
         {
             //Récupère la référence du gameobject pièce concerné
             coinTouchedGO = other.gameObject;
@@ -55,6 +57,7 @@ public class ItemScore : MonoBehaviour
             DisplayScore();
             SaveScore();
         }
+        
         //si la pièce choisie était une pièce pré-sélectionnée/déterminée
         else if (other.gameObject.CompareTag("Coin Bronze"))
         {
@@ -87,7 +90,8 @@ public class ItemScore : MonoBehaviour
         //Sauvegarde le score de pièces (nb*valeur) et écrase la précédente sauvegarde s'il y a
         PlayerPrefs.SetInt("ItemScore", score);
 
+        //DEBUG LAISSER EN COMM'
         //Affiche en console la valeur du PlayerPref
-        Debug.Log("save réussie score: "+ PlayerPrefs.GetInt("ItemScore"));
+        //Debug.Log("save réussie score: "+ PlayerPrefs.GetInt("ItemScore"));
     }
 }

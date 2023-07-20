@@ -16,7 +16,7 @@ public class Timer : MonoBehaviour
 
     void Start()
     {
-        //attribue le temps restant de départ
+        //Attribue le temps restant de départ
         timeValue = timeStart;
 
         stopChrono = false;
@@ -27,47 +27,41 @@ public class Timer : MonoBehaviour
     {
         if (stopChrono == false)
         {
-            //alors si la valeur du temps est supérieure à 0, décrémenter le temps du compte à rebours selon le temps qui s'écoule réellement
+            //Alors si la valeur du temps est supérieure à 0, décrémenter le temps du compte à rebours selon le temps qu'il s'écoule réellement
             if (timeValue > 0)
             {
                 timeValue -= Time.deltaTime;
             }
 
-            //sinon le temps sera égal à 0 (temps écoulé, pas de temps négatif)
+            //Sinon le temps sera égal à 0 (temps écoulé, pas de temps négatif)
             else
             {
                 timeValue = 0;
             }
 
-            //affiche le temps restant
+            //Affiche le temps restant
             DisplayTime(timeValue);
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void StopAndSaveTime()
     {
-        if (other.gameObject.CompareTag("Finish"))
-        {
-            //arrete le compte à rebours (le fige, ne le remet pas à 0)
-            stopChrono = true;
+        //Arrete le compte à rebours (le fige, ne le remet pas à 0)
+        stopChrono = true;
 
-            //Calcule le temps réalisé (temps restant inversé)
-            timeRealised = timeStart - timeValue;
+        //Calcule le temps réalisé (temps restant inversé)
+        timeRealised = timeStart - timeValue;
 
-            //Sauvegarde le temps réalisé
-            PlayerPrefs.SetFloat("TimeScore", timeRealised);
+        //Sauvegarde le temps réalisé
+        PlayerPrefs.SetFloat("TimeScore", timeRealised);
 
-            //Affiche en console la valeur du PlayerPref
-            Debug.Log("save réussie temps réalisé: " + PlayerPrefs.GetFloat("TimeScore"));
-
-            //Charge la scène suivante, celle de fin avec les résultats
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
+        //Affiche en console la valeur du PlayerPref
+        Debug.Log("save réussie temps réalisé: " + PlayerPrefs.GetFloat("TimeScore"));
     }
 
     void DisplayTime(float timeToDisplay)
     {
-        //si temps restant à afficher est inférieur à 0, le temps affiché est 0 (temps écoulé, pas de temps négatif) et le perso du joueur meurt
+        //Si temps restant à afficher est inférieur à 0, le temps affiché est 0 (temps écoulé, pas de temps négatif) et le perso du joueur meurt
         if (timeToDisplay < 0)
         {
             timeToDisplay = 0;
